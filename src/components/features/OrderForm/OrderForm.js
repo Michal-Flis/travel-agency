@@ -14,7 +14,7 @@ const OrderFrom = (props) => (
             currentValue={props.options[pricingOption.id]}
             setOrderOption={props.setOrderOption}
             {...pricingOption}
-            />
+          />
         </Col>
       ))}
         <Col xs={12}>
