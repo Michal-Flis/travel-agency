@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HTMLParser from 'react-html-parser';
-import OrderForm from '../../features/OrderForm/OrderForm';
+
 import NotFound from '../NotFound/NotFound';
 import Section from '../../layout/Section/Section';
 import PageTitle from '../../common/PageTitle/PageTitle';
@@ -10,11 +10,11 @@ import DetailsBox from '../../common/DetailsBox/DetailsBox';
 import DetailsImage from '../../common/DetailsImage/DetailsImage';
 import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
-
+import OrderForm from '../../features/OrderForm/OrderFormContainer.js';
 import styles from './Trip.module.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
-const Trip = ({error, name, image, cost, days, description, country, intro}) => {
+const Trip = ({error, name, image, cost, days, description, country, intro, id}) => {
   if(error) return <NotFound />;
   else return (
     <Section>
@@ -70,10 +70,10 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
         <Row>
           <Col xs={12}>
             <PageTitle text='Trip options' />
-            <OrderForm tripCost={cost} />
+            <OrderForm tripCost={cost} countryName={country.name} tripName={name} tripId={id}/>
           </Col>
         </Row>
-</Grid>
+      </Grid>
     </Section>
   );
 };
@@ -85,6 +85,9 @@ Trip.propTypes = {
   days: PropTypes.number,
   description: PropTypes.string,
   country: PropTypes.object,
+  error: PropTypes.bool,
+  intro: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default Trip;
